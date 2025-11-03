@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>縦シューティングゲーム</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(to bottom, #000428, #004e92);
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
+        }
+
+        #gameContainer {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            background: #001f3f;
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.5);
+        }
+
+        canvas {
+            display: block;
+            width: 100%;
+            height: auto;
+            background: #001f3f;
+        }
+
+        #ui {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            color: #0ff;
+            font-size: 20px;
+            text-shadow: 0 0 10px #0ff;
+            z-index: 10;
+        }
+
+        #gameOver {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.9);
+            padding: 40px;
+            border: 3px solid #0ff;
+            border-radius: 10px;
+            text-align: center;
+            display: none;
+            z-index: 20;
+        }
+
+        #gameOver h1 {
+            color: #f00;
+            font-size: 48px;
+            margin-bottom: 20px;
+            text-shadow: 0 0 20px #f00;
+        }
+
+        #gameOver p {
+            color: #0ff;
+            font-size: 24px;
+            margin: 10px 0;
+        }
+
+        #gameOver button {
+            margin-top: 20px;
+            padding: 15px 40px;
+            font-size: 20px;
+            background: #0ff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        #gameOver button:hover {
+            background: #0aa;
+            transform: scale(1.1);
+        }
+
+        #instructions {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #0ff;
+            font-size: 16px;
+            text-align: center;
+            text-shadow: 0 0 10px #0ff;
+        }
+    </style>
+</head>
+<body>
+    <div id="gameContainer">
+        <canvas id="gameCanvas" width="600" height="800"></canvas>
+        <div id="ui">
+            <div>スコア: <span id="score">0</span></div>
+            <div>HP: <span id="hp">100</span></div>
+        </div>
+        <div id="gameOver">
+            <h1>GAME OVER</h1>
+            <p>最終スコア: <span id="finalScore">0</span></p>
+            <p>撃墜数: <span id="enemiesDestroyed">0</span></p>
+            <button onclick="restartGame()">もう一度プレイ</button>
+        </div>
+        <div id="instructions">
+            矢印キー or WASD で移動 | スペースキーで発射
+        </div>
+    </div>
+
+    <script src="shooting_game.js"></script>
+</body>
+</html>
